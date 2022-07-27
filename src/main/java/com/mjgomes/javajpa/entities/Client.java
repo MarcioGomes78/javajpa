@@ -1,20 +1,25 @@
 package com.mjgomes.javajpa.entities;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Client {
 
+	private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	
 	private Long id;
 	private String name;
+	private String email;
 	private Date birthDate;
 	
 	public Client() {
 	}
 	
-	public Client(Long id, String name, Date birthDate) {
+	public Client(Long id, String name, String email, Date birthDate) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.email = email;
 		this.birthDate = birthDate;
 	}
 	
@@ -32,6 +37,13 @@ public class Client {
 		this.name = name;
 	}
 	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 	public Date getBirthDate() {
 		return birthDate;
 	}
@@ -41,8 +53,8 @@ public class Client {
 
 	@Override
 	public String toString() {
-		return "Client [id=" + id + ", name=" + name + ", birthDate=" + birthDate + "]";
-	}
-	
+		return name + " (" + sdf.format(birthDate) + ") - " + email;
+ 	}
+
 	
 }

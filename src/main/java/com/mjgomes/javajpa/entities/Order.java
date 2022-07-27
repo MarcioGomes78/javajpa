@@ -12,10 +12,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import com.mjgomes.javajpa.entities.enums.OrderStatus;
 
 @Entity
+@Table(name = "tb_order")
 public class Order {
 
 	private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy"); 
@@ -36,7 +38,7 @@ public class Order {
 	public Order() {
 	}
 	
-	public Order(Long id, Date moment, OrderStatus status, Client client, List<OrderItem> items ) {
+	public Order(Long id, Date moment, OrderStatus status, Client client) {
 		super();
 		this.id = id;
 		this.moment = moment;
@@ -74,6 +76,12 @@ public class Order {
 
 	public void setClient(Client client) {
 		this.client = client;
+	}
+
+	
+	
+	public List<OrderItem> getItems() {
+		return items;
 	}
 
 	public void addItem(OrderItem item) {

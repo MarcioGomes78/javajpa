@@ -7,8 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "tb_client")
 public class Client {
 
 	private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");

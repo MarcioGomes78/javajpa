@@ -5,29 +5,53 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
 import com.mjgomes.javajpa.entities.enums.OrderStatus;
 
+@Entity
 public class Order {
 
 	private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy"); 
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	private Date moment;
 	private OrderStatus status;
 	
+	@ManyToOne
+	@JoinColumn(name = "client_id")
 	private Client client;
 	
+	@OneToMany(mappedBy = "order")
 	private List<OrderItem> items = new ArrayList<OrderItem>();
 	
 	public Order() {
 	}
 	
-	public Order(Date moment, OrderStatus status, Client client, List<OrderItem> items ) {
+	public Order(Long id, Date moment, OrderStatus status, Client client, List<OrderItem> items ) {
 		super();
+		this.id = id;
 		this.moment = moment;
 		this.status = status;
 		this.client = client;
 	}
 
+	public Long getId() {
+		return id;
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	public Date getMoment() {
 		return moment;
 	}

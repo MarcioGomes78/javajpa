@@ -92,10 +92,10 @@ public class Order {
 		items.remove(item);
 	}
 	
-	public double total() {
+	public double getTotal() {
 		double sum = 0.0;
 		for (OrderItem it : items) {
-			sum += it.subTotal();
+			sum += it.getSubTotal();
 		}
 		return sum;
 	}
@@ -114,7 +114,7 @@ public class Order {
 			sb.append(item + "\n");
 		}
 		sb.append("Total price: $");
-		sb.append(String.format("%.2f", total()));
+		sb.append(String.format("%.2f", getTotal()));
 		return sb.toString();
 	}	
 	

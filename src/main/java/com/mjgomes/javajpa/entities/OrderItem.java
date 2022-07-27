@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "tb_order_item")
 public class OrderItem {
@@ -21,7 +23,7 @@ public class OrderItem {
 	@ManyToOne
 	@JoinColumn(name = "product_id") 
 	private Product product;
-	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "order_id")
 	private Order order;
@@ -78,7 +80,7 @@ public class OrderItem {
 		this.order = order;
 	}
 	
-	public double subTotal() {
+	public double getSubTotal() {
 		return price * quantity;
 	}
 	
@@ -90,6 +92,6 @@ public class OrderItem {
 				+ ", Quantity: "
 				+ quantity
 				+ ", Subtotal: $"
-				+ String.format("%.2f", subTotal());
+				+ String.format("%.2f", getSubTotal());
 	}
 }
